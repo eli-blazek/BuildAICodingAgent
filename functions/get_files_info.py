@@ -19,11 +19,16 @@ def get_files_info(working_directory, directory = None):
         return f'Error: "{directory}" is not a directory'
 
     ### Pretty print directory content
-    dir_contents = os.listdir(full_path_wd)
-    dir_string = ""
-    
-    for item in dir_contents:
-        item_path = os.path.join(full_path_wd, item)
-        dir_string += f'- {item}: file_size={os.path.getsize(item_path)} bytes, is_dir={os.path.isdir(item_path)}\n'
-    
-    return dir_string
+    try:
+
+        dir_contents = os.listdir(full_path_wd)
+        dir_string = ""
+        
+        for item in dir_contents:
+            item_path = os.path.join(full_path_wd, item)
+            dir_string += f'- {item}: file_size={os.path.getsize(item_path)} bytes, is_dir={os.path.isdir(item_path)}\n'
+        
+        return dir_string
+
+    except Error as e:
+        return f'Error: {e}'
