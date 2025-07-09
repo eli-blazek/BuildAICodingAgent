@@ -11,9 +11,11 @@ def get_files_info(working_directory, directory = None):
     else:
         full_path_wd = os.path.abspath(working_directory)
     full_path_wd = os.path.normpath(full_path_wd)
-    print(full_path_wd)
+    
     ### Check if dir is part of workdir and is not a file
     if not full_path_wd.startswith(wd_path_check):
         return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
-    elif os.path.isdir(cd_path_check):
+    if not os.path.isdir(full_path_wd):
         return f'Error: "{directory}" is not a directory'
+
+    return full_path_wd
